@@ -8,6 +8,7 @@ const app = express();
 
 // Controllers
 const userController = require("./src/controller/user-controller");
+const goodsController = require("./src/controller/goods-controller");
 
 const PORT = process.env.PORT || 3000;
 
@@ -18,7 +19,8 @@ app.use(express.json());
 
 // Routes
 app.use("/users", userController);
+app.use("/goods", goodsController);
 
 // Start server
-app.listen(PORT, console.log("Server is running"));
+app.listen(PORT, console.log("Server is running", PORT));
 

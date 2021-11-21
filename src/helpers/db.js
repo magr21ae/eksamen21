@@ -2,6 +2,7 @@ var fs = require("fs");
 
 const ABSOLUTE_PATH = __dirname + "/../../data";
 const USER_FILE = "/users.json";
+const GOODS_FILE = "/goods.json";
 
 class DB {
   constructor() {
@@ -32,4 +33,21 @@ class DB {
   }
 }
 
+class DB1 {
+  constructor() {
+    this.goods = this.openFile(GOODS_FILE);
+  }
+openFile(fileName) {
+    const file = fs.readFileSync(ABSOLUTE_PATH + fileName);
+    return JSON.parse(file);
+  }
+
+saveGoods(goods) {
+  this.users.push(goods);
+  this.saveFile(GOODS_FILE, JSON.stringify(this.goods));
+  }
+}
+
+
 module.exports = new DB();
+module.exports = new DB1();
