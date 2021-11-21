@@ -9,6 +9,12 @@ router.post("/create", (req, res) => {
   res.status(200).send(true);
 });
 
+router.delete("/delete", (req, res) => {
+  const user = new userModel(req.body.email, req.body.password);
+  db.deleteUser(user);
+  res.status(200).send(true);
+});
+
 router.post("/login", (req, res) => {
   const user = new userModel(req.body.email, req.body.password);
   const found = db.findUser(user);
@@ -23,11 +29,7 @@ router.post("/login", (req, res) => {
   }
 });
 
-router.delete("/delete", (req, res) => {
-  const user = new userModel(req.body.email, req.body.password);
-  db.deleteUser(user);
-  res.status(200).send(true);
-});
+
 
 
 module.exports = router;

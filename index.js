@@ -9,12 +9,7 @@ const app = express();
 // Controllers
 const userController = require("./src/controller/user-controller");
 
-
-// Start server
-const PORT = 8080;
-app.listen(PORT, () => {
-    console.log('Listening on PORT:', PORT);
-});
+const PORT = process.env.PORT || 3000;
 
 // Middleware - endnu et fedt term
 app.use(express.static("./src/views"));
@@ -23,4 +18,7 @@ app.use(express.json());
 
 // Routes
 app.use("/users", userController);
+
+// Start server
+app.listen(PORT, console.log("Server is running"));
 
