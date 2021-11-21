@@ -1,13 +1,9 @@
-const router = require("../controllers/user-controller");
-
-//
-document.addEventListener("DOMContentLoaded", (event) => { //Kan bruges alle steder hvor man gerne vil have at brugeren err logget ind 
-  const user = localStorage.getItem("user");               //Tjekker - er bruger en bruger og er de logget ind
+document.addEventListener("DOMContentLoaded", (event) => {
+  const user = localStorage.getItem("user");
   if (!user) {
     location.href = "/login.html";
   }
 
-//Når der er tjekket om en bruger er logget ind så låses der op for resten
   document.getElementById("delete").addEventListener("submit", (event) => {
     event.preventDefault();
 
@@ -23,15 +19,12 @@ document.addEventListener("DOMContentLoaded", (event) => { //Kan bruges alle ste
       .then((response) => response.json())
       .then((response) => {
         if (response) {
-          localStorage.removeItem("user"); //Fjerner user den finder 
-          location.href = "/register.html"; //Sender tilbage til register
+          localStorage.removeItem("user");
+          location.href = "/register.html";
         }
       })
       .catch(() => {
         window.alert("Der skete en fejl");
       });
   });
-  
-
-  
 });
