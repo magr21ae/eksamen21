@@ -2,14 +2,14 @@ document.addEventListener("DOMContentLoaded", (event) => {
     document.getElementById("form").addEventListener("submit", (event) => {
       event.preventDefault();
   
-      const name = document.getElementById("name").value;
+      const category = document.getElementById("category").value;
       const price = document.getElementById("price").value;
-      const imige = document.getElementById("imige").value;
+      const picture = document.getElementById("picture").value;
   
-      const goods = {
-        name: name,
+      const good = {
+        category: category,
         price: price,
-        imige: imige
+        picture: picture
       };
   
       fetch("http://localhost:3000/goods/create", {
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(goods),
+        body: JSON.stringify(good),
       })
         .then((response) => response.json())
         .then((response) => {

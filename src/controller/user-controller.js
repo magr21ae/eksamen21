@@ -29,5 +29,17 @@ router.post("/login", (req, res) => {
   }
 });
 
+router.put = ("/update", (req, res) => {
+  //Hvilket id/index har jeg?
+  const user = new userModel(req.body.email, req.body.password); //finder user i userData database
+
+  //Hvad vil jeg opdatere?
+  user.email = req.body.email;
+  user.password = req.body.password;
+
+  writeUserData(); //opdateres i databasen
+
+  res.send(user);
+});
 
 module.exports = router;
