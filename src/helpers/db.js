@@ -33,7 +33,7 @@ class DB {
     return this.users.find((x) => user.email == x.email);
   }
 
-  updateUser(user) {
+  patchUser(user) {
     this.users.push(user);
     this.saveFile(USER_FILE, JSON.stringify(this.users));
   }

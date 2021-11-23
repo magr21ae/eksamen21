@@ -30,23 +30,16 @@ router.post("/login", (req, res) => {
     res.status(404).send(false);
   }
 });
-//Funktion OpdaterProfil()
-router.put('/user/:id',(req,res) => {
-  let userModel = req.params.id
-  let user = users.find(function (u) { 
-      return u.email==email;
-  });
+router.patch("/:email", (req, res) =>{
+  // Requesting the parameter to get an identifier
+  const { email } = req.params;
 
-  if(user){
-      let change =req.body;
-      //Alt fra brugerenn kommer ind i det tomme objekt, også kommer alt det fra change ind i objektet
-      let changedUser=userModel.assign({},user,change);
-      res.send(changedUser);
-  }else{
+  // Requesting the body to get the new changes
+  const editedUser = req.body;
 
-      res.send(404,'user not found');
-  }
-
+  // Using the patch function from storage
+  patchingUser( email, editedUser );
+  res.send('User has been updated');
 });
 
 

@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         .then((response) => response.json())
         .then((response) => {
           if (response) {
-            location.href = "/index.html";
+            location.href = "/createGood.html";
           }
         })
         .catch(() => {
