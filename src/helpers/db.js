@@ -32,11 +32,13 @@ class DB {
   findUser(user) {
     return this.users.find((x) => user.email == x.email);
   }
+
+  updateUser(user) {
+    this.users.push(user);
+    this.saveFile(USER_FILE, JSON.stringify(this.users));
+  }
+
   
-  //Update user
-  writeUserData() { 
-    fs.writeFile('./data/users.json', JSON.stringify(this.user));
-  };
 }
 
 module.exports = new DB();

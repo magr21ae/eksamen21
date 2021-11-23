@@ -28,3 +28,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       });
   });
 });
+//Kunne logge ud
+function logOutButton() {
+  localStorage.clear();
+}
