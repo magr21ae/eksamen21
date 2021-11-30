@@ -33,8 +33,15 @@ class DB {
     return this.users.find((x) => user.email == x.email);
   }
 
-  patchUser(user) {
-    this.users.push(user);
+  updateUser(user) {
+    for (let i = 0; i < this.users.length; i++) {
+      console.log(this.users[i]);
+      console.log(user);
+      if (this.users[i].email == user.oldEmail) {
+        this.users[i].email = user.email;
+        this.users[i].password = user.password;
+      }
+    }
     this.saveFile(USER_FILE, JSON.stringify(this.users));
   }
 

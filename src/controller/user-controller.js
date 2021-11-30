@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const userModel = require("./../models/user");
 const db = require("./../helpers/db");
-const dbg = require("./../helpers/dbg");
 const { user } = require("./../helpers/db");
 
 router.post("/create", (req, res) => {
@@ -30,16 +29,11 @@ router.post("/login", (req, res) => {
     res.status(404).send(false);
   }
 });
-router.patch("/:email", (req, res) =>{
-  // Requesting the parameter to get an identifier
-  const { email } = req.params;
 
-  // Requesting the body to get the new changes
-  const editedUser = req.body;
-
-  // Using the patch function from storage
-  patchingUser( email, editedUser );
-  res.send('User has been updated');
+router.put("/update", (req, res) => {
+  const user = {email: req.body.email, password: req.body.password, oldEmail: req.body.oldEmail};
+  db.updateUser(user);
+  res.status(200).send(true);
 });
 
 

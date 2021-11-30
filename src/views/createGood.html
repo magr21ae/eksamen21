@@ -6,11 +6,19 @@
     <h1>Create Goods!</h1>
     <p>Here you can create goods:</p>
 
-    <form id="form">
-        <input placeholder="Kategory" id="category" />
+      <form id="form">
+        <input placeholder="Category" id="category" />
         <input placeholder="Price" id="price" />
         <input type="file" name="fileToUpload" id="picture">
         <input value="Submit" type="submit" />
+      </form>
+
+      <form id="delete">
+        <input value="Delete" type="submit" />
+      </form>
+
+      <form id="showGood">
+        <input value="My goods" onclick="tableFunction()" type="submit" />
       </form>
       <p id="demo"></p>
     </form>
