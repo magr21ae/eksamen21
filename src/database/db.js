@@ -2,31 +2,34 @@ var fs = require("fs"); //node.js filesystem gør det muligt at læse, oprette, 
 const User = require("../models/user");
 
 const ABSOLUTE_PATH = __dirname + "/../../data";
-const USER_FILE = "/users.json";
-const GOODS_FILE = "/goods.json";
+const userFILE = "/users.json";
+
 
 class DB {
   constructor() {
-    this.users = this.openFile(USER_FILE);
-  }
-  
-  saveFile(fileName, contentString) {
-    fs.writeFileSync(ABSOLUTE_PATH + fileName, contentString);
+    this.users = this.openFile(userFILE);
   }
 
+//Skaber en path til en fil
   openFile(fileName) {
     const file = fs.readFileSync(ABSOLUTE_PATH + fileName);
     return JSON.parse(file);
   }
 
+//Gemmer data  
+  saveFile(fileName, contentString) {
+    fs.writeFileSync(ABSOLUTE_PATH + fileName, contentString);
+  }
+  
+//Opretter data ved hjælp af push i JSON data fil 
   saveUser(user) {
     this.users.push(user);
-    this.saveFile(USER_FILE, JSON.stringify(this.users));
+    this.saveFile(userFILE, JSON.stringify(this.users));
   }
 
   deleteUser(user) {
     this.users = this.users.filter((x) => x.email != user.email);
-    this.saveFile(USER_FILE, JSON.stringify(this.users));
+    this.saveFile(userFILE, JSON.stringify(this.users));
   }
 
   findUser(user) {
@@ -42,7 +45,7 @@ class DB {
         this.users[i].password = user.password;
       }
     }
-    this.saveFile(USER_FILE, JSON.stringify(this.users));
+    this.saveFile(userFILE, JSON.stringify(this.users));
   }
 
   

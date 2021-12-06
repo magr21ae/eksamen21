@@ -1,0 +1,51 @@
+<html>
+<head>
+
+</head>
+<body>
+    <h2>Se alle varer</h2>
+
+  
+<button id='klik'>Klik for at se alle varer</button>
+<table id="vareListe"></table>
+
+<script>
+document.getElementById("klik").addEventListener("click", async () => {
+let table = document.getElementById('vareListe');   
+
+var goods = localStorage.getItem("goods");
+goods = JSON.parse(goods) 
+
+    let result = await fetch('http://localhost:3000/goods/returner_alle_varer', {method: 'GET'})
+        .then(res => res.json())
+        .catch(err => console.log(err));
+
+        let tableHtml = `
+        <tr>
+            <th>Kategori</th>
+            <th>Produkt</th>
+            <th>Pris</th>
+            <th<Billede</th>
+
+        </tr>
+        `;
+        
+
+        result.forEach((varer) => {
+            tableHtml += `
+            <tr>
+                <td>${varer.kategori}</td>
+                <td>${varer.produkt}</td>
+                <td>${varer.pris}</td>
+                <td>${varer.billedelokation}</td>
+                
+
+            `;
+    table.innerHTML = tableHtml
+
+            });
+        });
+
+</script>
+</body>
+</html>

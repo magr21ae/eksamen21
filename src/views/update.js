@@ -2,12 +2,11 @@
 
 
 function updateUser(){
-  // Getting the email and password from local storage
+  // Henter user fra local storage og sætter til at være gamle e-mail
   var oldEmail = localStorage.getItem("user");
   oldEmail = JSON.parse(oldEmail)
   
-
-  // Getting the new information from the changed user info
+  // Henter den nye information fra den ændrede bruger information
   var email = document.getElementById("newEmail").value;
   var password = document.getElementById("newPassword").value;
  
@@ -15,6 +14,7 @@ function updateUser(){
   // Creating a edited user object 
   const updateUser = {email: email, password: password, oldEmail: oldEmail.email};
   const Update = {email: email, password: password};
+
   fetch("http://localhost:3000/users/update", {
       method: "PUT",
       headers: {

@@ -1,18 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const userModel = require("./../models/user");
-const db = require("./../helpers/db");
-const { user } = require("./../helpers/db");
+const db = require("../database/db");
+const { user } = require("../database/db");
 
 router.post("/create", (req, res) => {
   const user = new userModel(req.body.email, req.body.password);
   db.saveUser(user);
-  res.status(200).send(true);
-});
-
-router.delete("/delete", (req, res) => {
-  const user = new userModel(req.body.email, req.body.password);
-  db.deleteUser(user);
   res.status(200).send(true);
 });
 
@@ -28,6 +22,12 @@ router.post("/login", (req, res) => {
   } else {
     res.status(404).send(false);
   }
+});
+
+router.delete("/delete", (req, res) => {
+  const user = new userModel(req.body.email, req.body.password);
+  db.deleteUser(user);
+  res.status(200).send(true);
 });
 
 router.put("/update", (req, res) => {

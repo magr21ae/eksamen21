@@ -7,3 +7,9 @@ class Good {
   }
   
   module.exports = Good;
+
+
+
+
+
+  

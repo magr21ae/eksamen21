@@ -1,9 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const goodModel = require("./../models/good");
-const db = require("./../helpers/dbg");
-const { good } = require("./../helpers/dbg");
+const db = require("../database/dbg");
+const { good, goods } = require("../database/dbg");
+const { users } = require("../database/db");
 
+//
 router.post("/create", (req, res) => {
   const good = new goodModel(req.body.category, req.body.price, req.body.picture);
   db.saveGood(good);
@@ -11,15 +13,21 @@ router.post("/create", (req, res) => {
 });
 
 router.delete("/delete", (req, res) => {
-  const good = new goodModel(req.body.email, req.body.password, req.body.picture);
+  const good = new goodModel(req.body.category, req.body.price, req.body.picture);
   db.deleteGood(good);
   res.status(200).send(true);
 });
 
 router.put("/update", (req, res) => {
-  const good = new goodModel(req.body.category, req.body.price, req.body.picture);
+  const good = {category: req.body.category, price: req.body.price, picture: req.body.picture, oldCategory: req.body.oldCategory};
   db.updateGood(good);
   res.status(200).send(true);
+});
+
+router.get("/returner_alle_varer", (req, res) => {
+  const good = new goodModel(req.body.category, req.body.price, req.body.picture);
+  db.findGood(good);
+  res.status(200).json(true);
 });
 
 

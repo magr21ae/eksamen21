@@ -1,1 +1,7 @@
-[{"category":"Home ","price":"100","picture":{}},{"category":"sport","price":"200","picture":"C:\\fakepath\\hotel-ikoner10b.png"},{"category":"Cykel","price":"500","picture":"C:\\fakepath\\hotel-ikoner10b.png"}]
+[
+    {
+        "category": "Home ",
+        "price": "400",
+        "picture": "C:\\fakepath\\Martha-1.-skoledag-Balthazar-062-800x480.jpg"
+    }
+]

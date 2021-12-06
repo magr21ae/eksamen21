@@ -29,14 +29,21 @@ class DBG {
   }
 
   findGood(good) {
-    return this.goods.find((x) => user.category == x.category);
+    return this.goods.find((x) => good.category == x.category);
   }
 
   updateGood(good) {
-    this.goods.push(good);
+    for (let i = 0; i < this.goods.length; i++) {
+      console.log(this.goods[i]);
+      console.log(good);
+      if (this.goods[i].category == good.oldCategory) {
+        this.goods[i].category = good.category;
+        this.goods[i].price = good.price;
+        this.goods[i].picture = good.picture;
+      }
+    }
     this.saveFile(GOODS_FILE, JSON.stringify(this.goods));
   }
-
   
 }
 

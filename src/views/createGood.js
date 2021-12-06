@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     const price = document.getElementById("price").value;
     const picture = document.getElementById("picture").value;
 
+    
     const good = {
       category: category,
       price: price,
@@ -29,11 +30,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         window.alert("Der skete en fejl");
       });
   });
-});
 
-document.addEventListener("DOMContentLoaded", (event) => {
-  const good = localStorage.getItem("good");
-  
 
   document.getElementById("delete").addEventListener("submit", (event) => {
     event.preventDefault();
@@ -44,21 +41,53 @@ document.addEventListener("DOMContentLoaded", (event) => {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-      },
-      body: JSON.stringify(good),
+      }
     })
-      .then((response) => response.json())
       .then((response) => {
         if (response) {
           localStorage.removeItem("good");
-          window.alert('Vare er slettet')
+          window.alert("Vare er slettet")
         }
       })
       .catch(() => {
         window.alert("Der skete en fejl");
       });
   });
-});
 
-
+  function updateGood(){
+    // Getting the email and password from local storage
+    var oldCategory = localStorage.getItem("good");
+    oldCategory = JSON.parse(oldCategory)
+    
   
+    // Getting the new information from the changed user info
+    var category = document.getElementById("category").value;
+    var price = document.getElementById("price").value;
+    var picture = document.getElementById('picture').value;
+   
+  
+    // Creating a edited user object 
+    const updateGood = {category: category, price: price, oldCategory: oldCategory.category};
+    const Update = {category: category, price: price, picture: picture};
+
+    
+    fetch("http://localhost:3000/goods/update", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updateGood),
+      })
+        .then((response) => response.json())
+        .then((response) => {
+          if (response) {
+            localStorage.setItem("good", JSON.stringify(Update))
+            location.href = "/index.html";
+          }
+        })
+        .catch(() => {
+          window.alert("Der skete en fejl");
+        });
+      }; 
+
+    });
