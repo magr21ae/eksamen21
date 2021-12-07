@@ -1,4 +1,3 @@
-const { report } = require("../controller/user-controller");
 
 document.addEventListener("DOMContentLoaded", (event) => {
   document.getElementById("form").addEventListener("submit", (event) => {
