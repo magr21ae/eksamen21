@@ -3,5 +3,10 @@
         "category": "Home ",
         "price": "400",
         "picture": "C:\\fakepath\\Martha-1.-skoledag-Balthazar-062-800x480.jpg"
+    },
+    {
+        "category": "Fashion",
+        "price": "200",
+        "picture": "C:\\fakepath\\pngtree-vector-cocktail-icon-png-image_559234.jpeg"
     }
 ]

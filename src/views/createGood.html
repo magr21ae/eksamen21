@@ -3,11 +3,17 @@
     <script src="createGood.js"></script>
   </head>
   <body>
-    <h1>Create Goods!</h1>
-    <p>Here you can create goods:</p>
+    <h1>Opret varer</h1>
+    <p>Her kan du oprette varer du ønsker at sælge:</p>
 
       <form id="form">
-        <input placeholder="Category" id="category" />
+          <label for="category">Vælg en kategori:</label>
+          <select id="category" name="category">
+            <option value="Home">Hjem</option>
+            <option value="Sport">Sport</option>
+            <option value="Fashion">Mode</option>
+          </select>
+        </input>
         <input placeholder="Price" id="price" />
         <input type="file" name="fileToUpload" id="picture">
         <input value="Submit" type="submit" />
