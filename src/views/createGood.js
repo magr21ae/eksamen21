@@ -1,3 +1,5 @@
+const { report } = require("../controller/user-controller");
+
 document.addEventListener("DOMContentLoaded", (event) => {
   document.getElementById("form").addEventListener("submit", (event) => {
     event.preventDefault();
@@ -23,7 +25,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
       .then((response) => response.json())
       .then((response) => {
         if (response) {
-          location.href = "/index.html";
+          localStorage.setItem("good", JSON.stringify(good));
+          window.alert("Varen er oprettet");
         }
       })
       .catch(() => {
@@ -53,41 +56,41 @@ document.addEventListener("DOMContentLoaded", (event) => {
         window.alert("Der skete en fejl");
       });
   });
+});
 
-  function updateGood(){
-    // Getting the email and password from local storage
-    var oldCategory = localStorage.getItem("good");
-    oldCategory = JSON.parse(oldCategory)
-    
+function updateGood(){
+  // Henter user fra local storage og sætter til at være gamle e-mail
+  var oldCategory = localStorage.getItem("good");
+  oldCategory = JSON.parse(oldCategory)
   
-    // Getting the new information from the changed user info
-    var category = document.getElementById("category").value;
-    var price = document.getElementById("price").value;
-    var picture = document.getElementById('picture').value;
-   
-  
-    // Creating a edited user object 
-    const updateGood = {category: category, price: price, oldCategory: oldCategory.category};
-    const Update = {category: category, price: price, picture: picture};
+  // Henter den nye information fra den ændrede bruger information
+  var category = document.getElementById("category").value;
+  var price = document.getElementById("price").value;
+  var picture = document.getElementById("picture").value;
+ 
 
-    
-    fetch("http://localhost:3000/goods/update", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updateGood),
+  // Creating a edited user object 
+  const updateGood = {category: category, price: price, picture: picture, oldCategory: oldCategory.category};
+  const Update = {category: category, price: price, picture: picture};
+
+  fetch("http://localhost:3000/goods/update", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updateGood),
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        if (response) {
+          localStorage.setItem("good", JSON.stringify(Update))
+          window.alert("Varen er opdateret");
+        }
       })
-        .then((response) => response.json())
-        .then((response) => {
-          if (response) {
-            localStorage.setItem("good", JSON.stringify(Update))
-            location.href = "/index.html";
-          }
-        })
-        .catch(() => {
-          window.alert("Der skete en fejl");
-        });
-      }; 
+      .catch(() => {
+        window.alert("Der skete en fejl");
+      });
+    };  
 
-    });
+
+  

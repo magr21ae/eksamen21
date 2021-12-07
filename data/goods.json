@@ -1,12 +1,1 @@
-[
-    {
-        "category": "Home ",
-        "price": "400",
-        "picture": "C:\\fakepath\\Martha-1.-skoledag-Balthazar-062-800x480.jpg"
-    },
-    {
-        "category": "Fashion",
-        "price": "200",
-        "picture": "C:\\fakepath\\pngtree-vector-cocktail-icon-png-image_559234.jpeg"
-    }
-]
+[{"category":"Home ","price":"400","picture":"C:\\fakepath\\Martha-1.-skoledag-Balthazar-062-800x480.jpg"},{"category":"Fashion","price":"200","picture":""},{"category":"Sport","price":"100","picture":"C:\\fakepath\\Martha-1.-skoledag-Balthazar-062-800x480.jpg"},{"category":"Sport","price":"100","picture":"C:\\fakepath\\Martha-1.-skoledag-Balthazar-062-800x480.jpg"},{"category":"Fashion","price":"200","picture":""},{"category":"Fashion","price":"200","picture":""}]

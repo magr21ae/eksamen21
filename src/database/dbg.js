@@ -24,19 +24,19 @@ class DBG {
   }
 
   deleteGood(good) {
-    this.goods = this.goods.filter((x) => x.category != good.category);
+    this.goods = this.goods.filter((x) => x.id != good.id);
     this.saveFile(GOODS_FILE, JSON.stringify(this.goods));
   }
 
   findGood(good) {
-    return this.goods.find((x) => good.category == x.category);
+    return this.goods.find((x) => good.id == x.id);
   }
 
   updateGood(good) {
     for (let i = 0; i < this.goods.length; i++) {
       console.log(this.goods[i]);
       console.log(good);
-      if (this.goods[i].category == good.oldCategory) {
+      if (this.goods[i].category == good.oldcategory) {
         this.goods[i].category = good.category;
         this.goods[i].price = good.price;
         this.goods[i].picture = good.picture;
