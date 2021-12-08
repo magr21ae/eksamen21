@@ -13,7 +13,7 @@
 document.getElementById("klik").addEventListener("click", async () => {
 let table = document.getElementById('vareListe');   
 
-var goods = localStorage.getItem("goods");
+var goods = localStorage.getItem("good");
 goods = JSON.parse(goods) 
 
     let result = await fetch('http://localhost:3000/goods/returner_alle_varer', {method: 'GET'})
@@ -23,7 +23,6 @@ goods = JSON.parse(goods)
         let tableHtml = `
         <tr>
             <th>Kategori</th>
-            <th>Produkt</th>
             <th>Pris</th>
             <th<Billede</th>
 
@@ -31,13 +30,13 @@ goods = JSON.parse(goods)
         `;
         
 
-        result.forEach((varer) => {
+        result.forEach((good) => {
             tableHtml += `
             <tr>
-                <td>${varer.kategori}</td>
-                <td>${varer.produkt}</td>
-                <td>${varer.pris}</td>
-                <td>${varer.billedelokation}</td>
+                <td>${good.category}</td>
+                <td>${good.price}</td>
+                <td>${good.picture}</td>
+                
                 
 
             `;
