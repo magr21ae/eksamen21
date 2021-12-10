@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       .then((response) => response.json())
       .then((response) => {
         if (response) {
-          // Gemme oplysninger
+          // Gemme oplysninger i Local Storage 
           localStorage.setItem("user", JSON.stringify(user));
           location.href = "/";
         } else {

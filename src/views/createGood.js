@@ -7,11 +7,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
     const price = document.getElementById("price").value;
     const picture = document.getElementById("picture").value;
 
-    
+    let user = JSON.parse(localStorage.getItem("user"));
+
     const good = {
       category: category,
       price: price,
       picture: picture,
+      email: user.email,
     };
 
     fetch("http://localhost:3000/goods/create", {

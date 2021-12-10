@@ -1,29 +1,31 @@
 <html>
 <head>
-
+    <script src="categoryGoods.html"></script>
 </head>
 <body>
-    <h2>Se alle varer</h2>
+
+    <h2>Se alle varer under enkelte kategorier</h2>
 
   
-<button id='klik'>Klik for at se alle varer</button>
-<table id="vareListe"></table>
+<button id='seMode'>Se mode</button>
+<table id="Mode"></table>
+
+<button id='seHjem'>Se hjem</button>
+<table id="Hjem"></table>
+
+<button id='seSport'>Se sport</button>
+<table id="Sport"></table>
 
 <script>
+document.getElementById("seMode").addEventListener("click", async () => {
+let table = document.getElementById('Mode');   
 
-// Asynkron klik funktion 
-document.getElementById("klik").addEventListener("click", async () => {
-let table = document.getElementById('vareListe');   
-
-// Henter user data ned fra Local Storage
 let user = JSON.parse(localStorage.getItem("user"));
 
-    // Kører http request i goods-controller
-    let result = await fetch('http://localhost:3000/goods/returner_alle_varer/' + user.email, {method: 'GET'})
+
+    let result = await fetch('http://localhost:3000/goods/returner_alle_varer/' + user.category, {method: 'GET'})
         .then(res => res.json())
         .catch(err => console.log(err));
-        
-        // Opretter tabel
         let tableHtml = `
         <tr>
             <th>Kategori</th>
@@ -34,8 +36,7 @@ let user = JSON.parse(localStorage.getItem("user"));
         </tr>
         `;
         console.log(result)
-        
-        //Sender data ind i tabel
+
         result.forEach((goods) => {
             tableHtml += `
             <tr>
@@ -49,8 +50,39 @@ let user = JSON.parse(localStorage.getItem("user"));
     table.innerHTML = tableHtml
 
             });
-        });
+        
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </script>
+
 </body>
 </html>

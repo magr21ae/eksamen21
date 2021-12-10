@@ -11,7 +11,6 @@ function updateUser(){
   var password = document.getElementById("newPassword").value;
  
 
-  // Creating a edited user object 
   const updateUser = {email: email, password: password, oldEmail: oldEmail.email};
   const Update = {email: email, password: password};
 

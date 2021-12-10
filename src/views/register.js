@@ -5,11 +5,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
+    //Variabel der definere hvilke keys og values der gælder for en user
     const user = {
       email: email,
       password: password,
     };
 
+    //Fetch http request - metode: POST
     fetch("http://localhost:3000/users/create", {
       method: "POST",
       headers: {
@@ -24,7 +26,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         }
       })
       .catch(() => {
-        window.alert("Der skete en fejl");
+        window.alert("Kunne ikke oprette bruger");
       });
   });
 });

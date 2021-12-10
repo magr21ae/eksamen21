@@ -24,19 +24,26 @@ class DBG {
   }
 
   deleteGood(good) {
-    this.goods = this.goods.filter((x) => x.id != good.id);
+    this.goods = this.goods.filter((x) => x.email != good.email);
     this.saveFile(GOODS_FILE, JSON.stringify(this.goods));
   }
-
-  findGood(good) {
-    return this.goods.find((x) => good.id == x.id);
+  //Finder varer ud fra brugers e-mail
+  findGood(email) {
+    const goods = [];
+    
+    for (let i = 0; i < this.goods.length; i++) {
+      if (this.goods[i].email == email) {
+        goods.push(this.goods[i])
+      } 
+    }
+    return goods;
   }
 
   updateGood(good) {
     for (let i = 0; i < this.goods.length; i++) {
       console.log(this.goods[i]);
       console.log(good);
-      if (this.goods[i].category == good.oldcategory) {
+      if (this.goods[i].category == good.oldCategory) {
         this.goods[i].category = good.category;
         this.goods[i].price = good.price;
         this.goods[i].picture = good.picture;

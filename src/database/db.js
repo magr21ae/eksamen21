@@ -10,7 +10,7 @@ class DB {
     this.users = this.openFile(userFILE);
   }
 
-//Skaber en path til en fil
+//Skaber en path til fil
   openFile(fileName) {
     const file = fs.readFileSync(ABSOLUTE_PATH + fileName);
     return JSON.parse(file);
@@ -27,15 +27,17 @@ class DB {
     this.saveFile(userFILE, JSON.stringify(this.users));
   }
 
+  //Sletter data
   deleteUser(user) {
     this.users = this.users.filter((x) => x.email != user.email);
     this.saveFile(userFILE, JSON.stringify(this.users));
   }
-
+  // Finder bruger ud fra e-mail 
   findUser(user) {
     return this.users.find((x) => user.email == x.email);
   }
-
+  
+  //Erstatter nye oplysninger med gamle
   updateUser(user) {
     for (let i = 0; i < this.users.length; i++) {
       console.log(this.users[i]);

@@ -3,11 +3,11 @@ const router = express.Router();
 const goodModel = require("./../models/good");
 const db = require("../database/dbg");
 const { good, goods } = require("../database/dbg");
-const { users } = require("../database/db");
+//const { users } = require("../database/db");
 
-//
+
 router.post("/create", (req, res) => {
-  const good = new goodModel(req.body.category, req.body.price, req.body.picture);
+  const good = new goodModel(req.body.category, req.body.price, req.body.picture, req.body.email);
   db.saveGood(good);
   res.status(200).send(true);
 });
@@ -24,10 +24,10 @@ router.put("/update", (req, res) => {
   res.status(200).send(true);
 });
 
-router.get("/returner_alle_varer", (req, res) => {
-  const good = new goodModel(req.body.category, req.body.price, req.body.picture);
-  db.findGood(good);
-  res.status(200).json(true);
+// GET http request - se alle varer 
+router.get("/returner_alle_varer/:email", (req, res) => {
+
+  res.status(200).json(db.findGood(req.params.email));
 });
 
 
